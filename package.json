@@ -67,6 +67,14 @@
           "path": "/sap/opu/odata/sap/UX_UI_CUSTOMER_O2/"
         }
       },
+      "com_sap_gateway_srvd_ux_ui_customer_v0001": {
+        "kind": "odata",
+        "model": "srv/external/com_sap_gateway_srvd_ux_ui_customer_v0001",
+        "credentials": {
+          "destination": "S4D_100",
+          "path": "/sap/opu/odata4/sap/ux_ui_customer_o4/srvd/sap/ux_ui_customer/0001/"
+        }
+      },
       "[production]": {
         "db": {
           "kind": "hana-cloud"

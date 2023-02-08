@@ -37,4 +37,7 @@ service RiskService {
 
     @readonly
     entity Customers        as projection on rm.Customers;
+
+    @readonly
+    entity V4_Customers     as projection on rm.V4_Customers;
 }

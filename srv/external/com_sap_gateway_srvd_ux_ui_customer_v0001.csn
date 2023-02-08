@@ -1,0 +1,467 @@
+{
+  "meta": {
+    "creator": "cds-dk 6.3.1"
+  },
+  "$version": "2.0",
+  "definitions": {
+    "com_sap_gateway_srvd_ux_ui_customer_v0001.UX_Customer": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "elements": {
+        "CustomerGuid": {
+          "key": true,
+          "notNull": true,
+          "type": "cds.UUID",
+          "@Core.Computed": true,
+          "@Common.Label": "FBP GUID",
+          "@Common.Heading": "Flight Business Partner GUID",
+          "@Common.QuickInfo": "Flight Business Partner GUID"
+        },
+        "CustomerNumber": {
+          "notNull": true,
+          "type": "cds.String",
+          "length": 8,
+          "@Core.Computed": true,
+          "@Common.IsDigitSequence": null,
+          "@Common.Label": "Customer Number",
+          "@Common.Heading": "Cust. No."
+        },
+        "Form": {
+          "notNull": true,
+          "type": "cds.String",
+          "length": 15,
+          "@Common.Label": "Form of address"
+        },
+        "CustomerName": {
+          "notNull": true,
+          "type": "cds.String",
+          "length": 25,
+          "@Common.FieldControl": {
+            "#": "Mandatory"
+          },
+          "@Common.Label": "Customer name"
+        },
+        "Street": {
+          "notNull": true,
+          "type": "cds.String",
+          "length": 30,
+          "@Common.Label": "Street"
+        },
+        "PostCode": {
+          "notNull": true,
+          "type": "cds.String",
+          "length": 10,
+          "@Common.IsUpperCase": true,
+          "@Common.Label": "Postal Code",
+          "@Common.Heading": "Post. code"
+        },
+        "City": {
+          "notNull": true,
+          "type": "cds.String",
+          "length": 25,
+          "@Common.Label": "City"
+        },
+        "Country": {
+          "notNull": true,
+          "type": "cds.String",
+          "length": 3,
+          "@Common.IsUpperCase": true,
+          "@Common.Label": "Country/Region",
+          "@Common.Heading": "C/R",
+          "@Common.QuickInfo": "Country Code"
+        },
+        "Email": {
+          "notNull": true,
+          "type": "cds.String",
+          "length": 40,
+          "@Communication.IsEmailAddress": null,
+          "@Common.Label": "E-Mail Address",
+          "@Common.Heading": "E-Mail",
+          "@Common.QuickInfo": "Customer e-mail address"
+        },
+        "Telephone": {
+          "notNull": true,
+          "type": "cds.String",
+          "length": 30,
+          "@Common.IsUpperCase": true,
+          "@Communication.IsPhoneNumber": null,
+          "@Common.Label": "Tel. no.",
+          "@Common.Heading": "Telephone no.",
+          "@Common.QuickInfo": "Telephone number of flight customer"
+        },
+        "Discount": {
+          "notNull": true,
+          "type": "cds.String",
+          "length": 3,
+          "@Common.IsDigitSequence": null,
+          "@Common.Label": "Discount (%)",
+          "@Common.Heading": "Discount",
+          "@Common.QuickInfo": "Discount rate"
+        },
+        "changed_at": {
+          "notNull": false,
+          "type": "cds.Timestamp",
+          "@odata.Precision": 7,
+          "@odata.Type": "Edm.DateTimeOffset",
+          "@Common.Label": "Last Changed At",
+          "@Common.QuickInfo": "Last Changed At Timestamp"
+        },
+        "__CreateByAssociationControl": {
+          "type": "com_sap_gateway_srvd_ux_ui_customer_v0001.UX_CustomerCbAControl",
+          "@Core.Computed": null
+        },
+        "__EntityControl": {
+          "type": "com_sap_gateway_srvd_ux_ui_customer_v0001.EntityControl",
+          "@Core.Computed": null,
+          "@UI.HiddenFilter": null,
+          "@UI.Hidden": null
+        },
+        "SAP__Messages": {
+          "items": {
+            "type": "com_sap_gateway_srvd_ux_ui_customer_v0001.SAP__Message"
+          }
+        },
+        "_Bookings": {
+          "type": "cds.Composition",
+          "@cds.ambiguous": "missing on condition?",
+          "target": "com_sap_gateway_srvd_ux_ui_customer_v0001.UX_Booking",
+          "cardinality": {
+            "max": "*"
+          }
+        }
+      },
+      "@Capabilities.NavigationRestrictions": {
+        "RestrictedProperties": [
+          {
+            "NavigationProperty": {
+              "=": "_Bookings"
+            },
+            "InsertRestrictions": {
+              "Insertable": {
+                "=": "__CreateByAssociationControl/_Bookings"
+              }
+            }
+          }
+        ]
+      },
+      "@Capabilities.SearchRestrictions": {
+        "Searchable": true,
+        "UnsupportedExpressions": {
+          "#": "phrase"
+        }
+      },
+      "@Capabilities.FilterRestrictions": {
+        "NonFilterableProperties": [
+          "__CreateByAssociationControl",
+          "__EntityControl"
+        ]
+      },
+      "@Capabilities.SortRestrictions": {
+        "NonSortableProperties": [
+          "__CreateByAssociationControl",
+          "__EntityControl"
+        ]
+      },
+      "@Capabilities.DeleteRestrictions": {
+        "Deletable": {
+          "=": "__EntityControl/Deletable"
+        }
+      },
+      "@Capabilities.UpdateRestrictions": {
+        "Updatable": {
+          "=": "__EntityControl/Updatable"
+        },
+        "QueryOptions": {
+          "SelectSupported": true
+        }
+      }
+    },
+    "com_sap_gateway_srvd_ux_ui_customer_v0001.UX_Booking": {
+      "kind": "entity",
+      "@cds.external": true,
+      "@cds.persistence.skip": true,
+      "elements": {
+        "BookingGuid": {
+          "key": true,
+          "notNull": true,
+          "type": "cds.UUID",
+          "@Core.Computed": null,
+          "@Common.Label": "BK GUID",
+          "@Common.Heading": "Flight Booking GUID",
+          "@Common.QuickInfo": "Flight Booking GUID"
+        },
+        "AirlineID": {
+          "notNull": true,
+          "type": "cds.String",
+          "length": 3,
+          "@Common.FieldControl": {
+            "#": "Mandatory"
+          },
+          "@Common.IsUpperCase": true,
+          "@Common.Label": "Airline",
+          "@Common.Heading": "ID",
+          "@Common.QuickInfo": "Airline Code"
+        },
+        "ConnectionNumber": {
+          "notNull": true,
+          "type": "cds.String",
+          "length": 4,
+          "@Common.IsDigitSequence": null,
+          "@Common.Label": "Connection Number",
+          "@Common.Heading": "No.",
+          "@Common.QuickInfo": "Flight Connection Number"
+        },
+        "FlightDate": {
+          "notNull": false,
+          "type": "cds.Date",
+          "@Common.Label": "Flight Date",
+          "@Common.Heading": "Date",
+          "@Common.QuickInfo": "Flight date"
+        },
+        "BookingNumber": {
+          "notNull": true,
+          "type": "cds.String",
+          "length": 8,
+          "@Core.Computed": null,
+          "@Common.IsDigitSequence": null,
+          "@Common.Label": "Booking number",
+          "@Common.Heading": "Booking"
+        },
+        "BookingDate": {
+          "notNull": false,
+          "type": "cds.Date",
+          "@Core.Computed": null,
+          "@Common.Label": "Posting date",
+          "@Common.Heading": "Book.date",
+          "@Common.QuickInfo": "Booking Date"
+        },
+        "Class": {
+          "notNull": true,
+          "type": "cds.String",
+          "length": 1,
+          "@Common.FieldControl": {
+            "#": "Mandatory"
+          },
+          "@Common.IsUpperCase": true,
+          "@Common.Label": "Class",
+          "@Common.QuickInfo": "Flight Class"
+        },
+        "ForeignCurrencyPayment": {
+          "notNull": true,
+          "type": "cds.Decimal",
+          "@Common.FieldControl": {
+            "#": "Mandatory"
+          },
+          "@Measures.ISOCurrency": {
+            "$Path": "ForeignCurrency"
+          },
+          "@Common.Label": "Amount",
+          "@Common.Heading": "Amount (for.currncy)",
+          "@Common.QuickInfo": "Booking price in foreign currency (dependent on location)"
+        },
+        "ForeignCurrency": {
+          "notNull": true,
+          "type": "cds.String",
+          "length": 5,
+          "@Common.FieldControl": {
+            "#": "Mandatory"
+          },
+          "@Common.Label": "Paymnt currency",
+          "@Common.Heading": "Curr.",
+          "@Common.QuickInfo": "Payment currency"
+        },
+        "AgencyNumber": {
+          "notNull": true,
+          "type": "cds.String",
+          "length": 8,
+          "@Common.IsDigitSequence": null,
+          "@Common.Label": "Agency No.",
+          "@Common.QuickInfo": "Travel Agency Number"
+        },
+        "CustomerGuid": {
+          "notNull": false,
+          "type": "cds.UUID",
+          "@Core.Computed": null,
+          "@Common.Label": "FBP GUID",
+          "@Common.Heading": "Flight Business Partner GUID",
+          "@Common.QuickInfo": "Flight Business Partner GUID"
+        },
+        "IsCancelled": {
+          "notNull": true,
+          "type": "cds.String",
+          "length": 1,
+          "@Core.Computed": null,
+          "@Common.IsUpperCase": true,
+          "@Common.Label": "Cancelation flag",
+          "@Common.Heading": "Ca"
+        },
+        "__EntityControl": {
+          "type": "com_sap_gateway_srvd_ux_ui_customer_v0001.EntityControl",
+          "@Core.Computed": null,
+          "@UI.HiddenFilter": null,
+          "@UI.Hidden": null
+        },
+        "__OperationControl": {
+          "type": "com_sap_gateway_srvd_ux_ui_customer_v0001.UX_BookingOperationControl",
+          "@Core.Computed": null
+        },
+        "SAP__Messages": {
+          "items": {
+            "type": "com_sap_gateway_srvd_ux_ui_customer_v0001.SAP__Message"
+          }
+        },
+        "_Customer": {
+          "type": "cds.Association",
+          "@cds.ambiguous": "missing on condition?",
+          "target": "com_sap_gateway_srvd_ux_ui_customer_v0001.UX_Customer",
+          "cardinality": {
+            "max": 1
+          },
+          "keys": []
+        }
+      },
+      "actions": {
+        "cancel_booking": {
+          "kind": "action"
+        }
+      },
+      "@Capabilities.SearchRestrictions": {
+        "Searchable": false
+      },
+      "@Capabilities.FilterRestrictions": {
+        "NonFilterableProperties": [
+          "__EntityControl",
+          "__OperationControl"
+        ]
+      },
+      "@Capabilities.SortRestrictions": {
+        "NonSortableProperties": [
+          "__EntityControl",
+          "__OperationControl"
+        ]
+      },
+      "@Capabilities.InsertRestrictions": {
+        "Insertable": false
+      },
+      "@Capabilities.DeleteRestrictions": {
+        "Deletable": {
+          "=": "__EntityControl/Deletable"
+        }
+      },
+      "@Capabilities.UpdateRestrictions": {
+        "Updatable": {
+          "=": "__EntityControl/Updatable"
+        },
+        "QueryOptions": {
+          "SelectSupported": true
+        }
+      }
+    },
+    "com_sap_gateway_srvd_ux_ui_customer_v0001.UX_CustomerCbAControl": {
+      "kind": "type",
+      "@cds.external": true,
+      "elements": {
+        "_Bookings": {
+          "notNull": true,
+          "type": "cds.Boolean"
+        }
+      }
+    },
+    "com_sap_gateway_srvd_ux_ui_customer_v0001.UX_BookingOperationControl": {
+      "kind": "type",
+      "@cds.external": true,
+      "elements": {
+        "cancel_booking": {
+          "notNull": true,
+          "type": "cds.Boolean"
+        }
+      }
+    },
+    "com_sap_gateway_srvd_ux_ui_customer_v0001.EntityControl": {
+      "kind": "type",
+      "@cds.external": true,
+      "elements": {
+        "Deletable": {
+          "notNull": true,
+          "type": "cds.Boolean"
+        },
+        "Updatable": {
+          "notNull": true,
+          "type": "cds.Boolean"
+        }
+      }
+    },
+    "com_sap_gateway_srvd_ux_ui_customer_v0001.SAP__Message": {
+      "kind": "type",
+      "@cds.external": true,
+      "elements": {
+        "code": {
+          "notNull": true,
+          "type": "cds.LargeString"
+        },
+        "message": {
+          "notNull": true,
+          "type": "cds.LargeString"
+        },
+        "target": {
+          "notNull": false,
+          "type": "cds.LargeString"
+        },
+        "additionalTargets": {
+          "items": {
+            "notNull": true,
+            "type": "cds.LargeString"
+          }
+        },
+        "transition": {
+          "notNull": true,
+          "type": "cds.Boolean"
+        },
+        "numericSeverity": {
+          "notNull": true,
+          "type": "cds.Integer",
+          "@odata.Type": "Edm.Byte"
+        },
+        "longtextUrl": {
+          "notNull": false,
+          "type": "cds.LargeString"
+        }
+      }
+    },
+    "com_sap_gateway_srvd_ux_ui_customer_v0001": {
+      "kind": "service",
+      "@cds.external": true,
+      "@CodeList.CurrencyCodes": {
+        "Url": "../../../../default/iwbep/common/0001/$metadata",
+        "CollectionPath": "Currencies"
+      },
+      "@Aggregation.ApplySupported": {
+        "Transformations": [
+          "aggregate",
+          "groupby",
+          "filter"
+        ],
+        "Rollup": {
+          "#": "None"
+        }
+      },
+      "@Common.ApplyMultiUnitBehaviorForSortingAndFiltering": true,
+      "@Capabilities.FilterFunctions": [
+        "eq",
+        "ne",
+        "gt",
+        "ge",
+        "lt",
+        "le",
+        "and",
+        "or",
+        "contains",
+        "startswith",
+        "endswith",
+        "any",
+        "all"
+      ]
+    }
+  }
+}

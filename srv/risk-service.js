@@ -7,7 +7,7 @@ const { query } = require("express");
    */
 module.exports = cds.service.impl(async function () {
    // Define constants for the Risk and BusinessPartners entities from the risk-service.cds file
-   const { Risks, BusinessPartners, Customers } = this.entities;
+   const { Risks, BusinessPartners, Customers, V4_Customers } = this.entities;
 
    /**
    * Set criticality after a READ operation on /risks
@@ -102,7 +102,7 @@ module.exports = cds.service.impl(async function () {
 
 
 
-   // connect to remote service
+   // connect to remote OData v2 service
    const CustomerSrv = await cds.connect.to("cds_ux_ui_customer");
 
    /**
@@ -111,6 +111,21 @@ module.exports = cds.service.impl(async function () {
    this.on("READ", Customers, async (req) => {
 
       return await CustomerSrv.transaction(req).send({
+         query: req.query
+      });
+
+   });
+
+
+   // connect to remote OData v4 service
+   const V4_CustomerSrv = await cds.connect.to("com_sap_gateway_srvd_ux_ui_customer_v0001");
+
+   /**
+    * Event-handler for read-events on the V4_Customers entity.
+    */
+   this.on("READ", V4_Customers, async (req) => {
+
+      return await V4_CustomerSrv.transaction(req).send({
          query: req.query
       });
 
