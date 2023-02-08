@@ -32,3 +32,17 @@ entity BusinessPartners as projection on external.A_BusinessPartner {
    FirstName 
 } 
 
+
+// using a service from S/4HANA on premise
+using { cds_ux_ui_customer as onprem } from '../srv/external/cds_ux_ui_customer.csn';
+
+entity Customers as projection on onprem.UX_Customer {
+   key CustomerGuid,
+   CustomerNumber, 
+   CustomerName,
+   Street,
+   PostCode,
+   City 
+} 
+
+

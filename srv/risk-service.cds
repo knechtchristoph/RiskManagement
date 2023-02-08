@@ -33,4 +33,8 @@ service RiskService {
 
     @readonly
     entity BusinessPartners as projection on rm.BusinessPartners;
+
+
+    @readonly
+    entity Customers        as projection on rm.Customers;
 }

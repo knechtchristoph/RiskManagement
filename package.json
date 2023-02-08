@@ -59,6 +59,14 @@
           "url": "https://sandbox.api.sap.com/s4hanacloud/sap/opu/odata/sap/API_BUSINESS_PARTNER/"
         }
       },
+      "cds_ux_ui_customer": {
+        "kind": "odata",
+        "model": "srv/external/cds_ux_ui_customer",
+        "credentials": {
+          "destination": "S4D_100",
+          "path": "/sap/opu/odata/sap/UX_UI_CUSTOMER_O2/"
+        }
+      },
       "[production]": {
         "db": {
           "kind": "hana-cloud"

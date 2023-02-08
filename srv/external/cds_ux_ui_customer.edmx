@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="http://s4dhost.wdf.sap.corp:8011/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation" />
+    </edmx:Reference>
+    <edmx:Reference Uri="http://s4dhost.wdf.sap.corp:8011/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics" />
+    </edmx:Reference>
+    <edmx:Reference Uri="http://s4dhost.wdf.sap.corp:8011/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities" />
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" />
+    </edmx:Reference>
+    <edmx:Reference Uri="http://s4dhost.wdf.sap.corp:8011/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CODELIST',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="SAP__CodeList" />
+        <edmx:Include Namespace="com.sap.vocabularies.CodeList.v1" Alias="CodeList" />
+    </edmx:Reference>
+    <edmx:Reference Uri="http://s4dhost.wdf.sap.corp:8011/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common" />
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="SAP__common" />
+    </edmx:Reference>
+    <edmx:Reference Uri="http://s4dhost.wdf.sap.corp:8011/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication" />
+    </edmx:Reference>
+    <edmx:Reference Uri="http://s4dhost.wdf.sap.corp:8011/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CORE',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Core.V1" Alias="SAP__core" />
+    </edmx:Reference>
+    <edmx:Reference Uri="http://s4dhost.wdf.sap.corp:8011/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_MEASURES',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Measures.V1" Alias="Measures" />
+    </edmx:Reference>
+    <edmx:Reference Uri="http://s4dhost.wdf.sap.corp:8011/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData" />
+    </edmx:Reference>
+    <edmx:Reference Uri="http://s4dhost.wdf.sap.corp:8011/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI" />
+    </edmx:Reference>
+    <edmx:Reference Uri="http://s4dhost.wdf.sap.corp:8011/sap/opu/odata/iwfnd/catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation" />
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="cds_ux_ui_customer" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm" />
+            <EntityType Name="UX_BookingType" sap:label="Flight Booking - Projection" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="BookingGuid" />
+                </Key>
+                <Property Name="cancel_booking_ac" Type="Edm.Boolean" sap:label="Dyn. Action Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Delete_mc" Type="Edm.Boolean" sap:label="Dyn. Method Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Update_mc" Type="Edm.Boolean" sap:label="Dyn. Method Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="BookingGuid" Type="Edm.Guid" Nullable="false" sap:label="BK GUID" sap:quickinfo="Flight Booking GUID" sap:creatable="false" sap:updatable="false" />
+                <Property Name="AirlineID" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Airline" sap:quickinfo="Airline Code" />
+                <Property Name="ConnectionNumber" Type="Edm.String" MaxLength="4" sap:display-format="NonNegative" sap:label="Connection Number" sap:quickinfo="Flight Connection Number" />
+                <Property Name="FlightDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Flight Date" sap:quickinfo="Flight date" />
+                <Property Name="BookingNumber" Type="Edm.String" MaxLength="8" sap:display-format="NonNegative" sap:label="Booking number" sap:creatable="false" sap:updatable="false" />
+                <Property Name="BookingDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Posting date" sap:quickinfo="Booking Date" sap:creatable="false" sap:updatable="false" />
+                <Property Name="Class" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Class" sap:quickinfo="Flight Class" />
+                <Property Name="ForeignCurrencyPayment" Type="Edm.Decimal" Precision="15" Scale="3" sap:unit="ForeignCurrency" sap:variable-scale="true" sap:label="Amount" sap:quickinfo="Booking price in foreign currency (dependent on location)" />
+                <Property Name="ForeignCurrency" Type="Edm.String" MaxLength="5" sap:label="Paymnt currency" sap:quickinfo="Payment currency" sap:semantics="currency-code" />
+                <Property Name="AgencyNumber" Type="Edm.String" MaxLength="8" sap:display-format="NonNegative" sap:label="Agency No." sap:quickinfo="Travel Agency Number" />
+                <Property Name="CustomerGuid" Type="Edm.Guid" sap:label="FBP GUID" sap:quickinfo="Flight Business Partner GUID" sap:creatable="false" sap:updatable="false" />
+                <Property Name="IsCancelled" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Cancelation flag" sap:creatable="false" sap:updatable="false" />
+                <NavigationProperty Name="to_Customer" Relationship="cds_ux_ui_customer.assoc_2F2094EE17F9A1C918441F3373CD2481" FromRole="FromRole_assoc_2F2094EE17F9A1C918441F3373CD2481" ToRole="ToRole_assoc_2F2094EE17F9A1C918441F3373CD2481" />
+            </EntityType>
+            <EntityType Name="UX_CustomerType" sap:label="Flight Customer - Projection" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CustomerGuid" />
+                </Key>
+                <Property Name="Delete_mc" Type="Edm.Boolean" sap:label="Dyn. Method Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="Update_mc" Type="Edm.Boolean" sap:label="Dyn. Method Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="to_Bookings_oc" Type="Edm.Boolean" sap:label="Dynamic CbA-Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" />
+                <Property Name="CustomerGuid" Type="Edm.Guid" Nullable="false" sap:label="FBP GUID" sap:quickinfo="Flight Business Partner GUID" sap:creatable="false" sap:updatable="false" />
+                <Property Name="CustomerNumber" Type="Edm.String" MaxLength="8" sap:display-format="NonNegative" sap:label="Customer Number" sap:creatable="false" sap:updatable="false" />
+                <Property Name="Form" Type="Edm.String" MaxLength="15" sap:label="Form of address" />
+                <Property Name="CustomerName" Type="Edm.String" MaxLength="25" sap:label="Customer name" />
+                <Property Name="Street" Type="Edm.String" MaxLength="30" sap:label="Street" />
+                <Property Name="PostCode" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Postal Code" />
+                <Property Name="City" Type="Edm.String" MaxLength="25" sap:label="City" />
+                <Property Name="Country" Type="Edm.String" MaxLength="3" sap:display-format="UpperCase" sap:label="Country/Region" sap:quickinfo="Country Code" />
+                <Property Name="Email" Type="Edm.String" MaxLength="40" sap:label="E-Mail Address" sap:quickinfo="Customer e-mail address" sap:semantics="email" />
+                <Property Name="Telephone" Type="Edm.String" MaxLength="30" sap:display-format="UpperCase" sap:label="Tel. no." sap:quickinfo="Telephone number of flight customer" sap:semantics="tel" />
+                <Property Name="Discount" Type="Edm.String" MaxLength="3" sap:display-format="NonNegative" sap:label="Discount (%)" sap:quickinfo="Discount rate" />
+                <Property Name="changed_at" Type="Edm.DateTimeOffset" Precision="7" sap:label="Last Changed At" sap:quickinfo="Last Changed At Timestamp" />
+                <NavigationProperty Name="to_Bookings" Relationship="cds_ux_ui_customer.assoc_AE91ACCFB839B44F2FBBBD104F22066A" FromRole="FromRole_assoc_AE91ACCFB839B44F2FBBBD104F22066A" ToRole="ToRole_assoc_AE91ACCFB839B44F2FBBBD104F22066A" />
+            </EntityType>
+            <EntityType Name="SAP__Currency" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CurrencyCode" />
+                </Key>
+                <Property Name="CurrencyCode" Type="Edm.String" Nullable="false" MaxLength="5" sap:label="Currency" sap:semantics="currency-code" />
+                <Property Name="ISOCode" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="ISO code" />
+                <Property Name="Text" Type="Edm.String" Nullable="false" MaxLength="15" sap:label="Short text" />
+                <Property Name="DecimalPlaces" Type="Edm.Byte" Nullable="false" sap:label="Decimals" />
+            </EntityType>
+            <EntityType Name="SAP__UnitOfMeasure" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="UnitCode" />
+                </Key>
+                <Property Name="UnitCode" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Internal UoM" sap:semantics="unit-of-measure" />
+                <Property Name="ISOCode" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="ISO code" />
+                <Property Name="ExternalCode" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Commercial" />
+                <Property Name="Text" Type="Edm.String" Nullable="false" MaxLength="30" sap:label="Measurement Unit Txt" />
+                <Property Name="DecimalPlaces" Type="Edm.Int16" sap:label="Decimal Places" />
+            </EntityType>
+            <ComplexType Name="DummyFunctionImportResult">
+                <Property Name="IsInvalid" Type="Edm.Boolean" sap:label="TRUE" />
+            </ComplexType>
+            <Association Name="assoc_AE91ACCFB839B44F2FBBBD104F22066A" sap:content-version="1">
+                <End Type="cds_ux_ui_customer.UX_CustomerType" Multiplicity="1" Role="FromRole_assoc_AE91ACCFB839B44F2FBBBD104F22066A">
+                    <OnDelete Action="Cascade" />
+                </End>
+                <End Type="cds_ux_ui_customer.UX_BookingType" Multiplicity="*" Role="ToRole_assoc_AE91ACCFB839B44F2FBBBD104F22066A" />
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_AE91ACCFB839B44F2FBBBD104F22066A">
+                        <PropertyRef Name="CustomerGuid" />
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_AE91ACCFB839B44F2FBBBD104F22066A">
+                        <PropertyRef Name="CustomerGuid" />
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_2F2094EE17F9A1C918441F3373CD2481" sap:content-version="1">
+                <End Type="cds_ux_ui_customer.UX_BookingType" Multiplicity="1" Role="FromRole_assoc_2F2094EE17F9A1C918441F3373CD2481" />
+                <End Type="cds_ux_ui_customer.UX_CustomerType" Multiplicity="1" Role="ToRole_assoc_2F2094EE17F9A1C918441F3373CD2481" />
+            </Association>
+            <EntityContainer Name="cds_ux_ui_customer_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="SAP__Currencies" EntityType="cds_ux_ui_customer.SAP__Currency" sap:content-version="1" />
+                <EntitySet Name="SAP__UnitsOfMeasure" EntityType="cds_ux_ui_customer.SAP__UnitOfMeasure" sap:content-version="1" />
+                <EntitySet Name="UX_Booking" EntityType="cds_ux_ui_customer.UX_BookingType" sap:content-version="1" sap:deletable-path="Delete_mc" sap:updatable-path="Update_mc" />
+                <EntitySet Name="UX_Customer" EntityType="cds_ux_ui_customer.UX_CustomerType" sap:searchable="true" sap:content-version="1" sap:deletable-path="Delete_mc" sap:updatable-path="Update_mc" />
+                <AssociationSet Name="assoc_AE91ACCFB839B44F2FBBBD104F22066A" Association="cds_ux_ui_customer.assoc_AE91ACCFB839B44F2FBBBD104F22066A" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="UX_Customer" Role="FromRole_assoc_AE91ACCFB839B44F2FBBBD104F22066A" />
+                    <End EntitySet="UX_Booking" Role="ToRole_assoc_AE91ACCFB839B44F2FBBBD104F22066A" />
+                </AssociationSet>
+                <AssociationSet Name="assoc_2F2094EE17F9A1C918441F3373CD2481" Association="cds_ux_ui_customer.assoc_2F2094EE17F9A1C918441F3373CD2481" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="UX_Booking" Role="FromRole_assoc_2F2094EE17F9A1C918441F3373CD2481" />
+                    <End EntitySet="UX_Customer" Role="ToRole_assoc_2F2094EE17F9A1C918441F3373CD2481" />
+                </AssociationSet>
+                <FunctionImport Name="cancel_booking" ReturnType="cds_ux_ui_customer.DummyFunctionImportResult" m:HttpMethod="POST" sap:action-for="cds_ux_ui_customer.UX_BookingType" sap:applicable-path="cancel_booking_ac">
+                    <Parameter Name="BookingGuid" Type="Edm.Guid" Mode="In" sap:label="BK GUID" />
+                </FunctionImport>
+            </EntityContainer>
+            <Annotations Target="cds_ux_ui_customer.cds_ux_ui_customer_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ApplyMultiUnitBehaviorForSortingAndFiltering" Bool="true" />
+            </Annotations>
+            <Annotations Target="cds_ux_ui_customer.UX_BookingType/AirlineID" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory" />
+            </Annotations>
+            <Annotations Target="cds_ux_ui_customer.UX_BookingType/Class" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory" />
+            </Annotations>
+            <Annotations Target="cds_ux_ui_customer.UX_BookingType/ForeignCurrency" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory" />
+            </Annotations>
+            <Annotations Target="cds_ux_ui_customer.UX_BookingType/ForeignCurrencyPayment" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory" />
+            </Annotations>
+            <Annotations Target="cds_ux_ui_customer.UX_CustomerType/CustomerName" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory" />
+            </Annotations>
+            <Annotations Target="cds_ux_ui_customer.cds_ux_ui_customer_Entities/UX_Booking" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>cancel_booking_ac</PropertyPath>
+                                <PropertyPath>Delete_mc</PropertyPath>
+                                <PropertyPath>Update_mc</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>cancel_booking_ac</PropertyPath>
+                                <PropertyPath>Delete_mc</PropertyPath>
+                                <PropertyPath>Update_mc</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_ux_ui_customer.cds_ux_ui_customer_Entities/UX_Customer" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>Delete_mc</PropertyPath>
+                                <PropertyPath>Update_mc</PropertyPath>
+                                <PropertyPath>to_Bookings_oc</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.NavigationRestrictions">
+                    <Record>
+                        <PropertyValue Property="RestrictedProperties">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="NavigationProperty" NavigationPropertyPath="to_Bookings" />
+                                    <PropertyValue Property="InsertRestrictions">
+                                        <Record>
+                                            <PropertyValue Property="Insertable" Path="to_Bookings_oc" />
+                                        </Record>
+                                    </PropertyValue>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>Delete_mc</PropertyPath>
+                                <PropertyPath>Update_mc</PropertyPath>
+                                <PropertyPath>to_Bookings_oc</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_ux_ui_customer.UX_CustomerType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Communication.Contact">
+                    <Record>
+                        <PropertyValue Property="fn" Path="CustomerName" />
+                        <PropertyValue Property="n">
+                            <Record>
+                                <PropertyValue Property="prefix" Path="Form" />
+                            </Record>
+                        </PropertyValue>
+                        <PropertyValue Property="adr">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="type" EnumMember="Communication.ContactInformationType/preferred" />
+                                    <PropertyValue Property="locality" Path="City" />
+                                    <PropertyValue Property="street" Path="Street" />
+                                    <PropertyValue Property="country" Path="Country" />
+                                    <PropertyValue Property="code" Path="PostCode" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="tel">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="type" EnumMember="Communication.PhoneType/preferred" />
+                                    <PropertyValue Property="uri" Path="Telephone" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="email">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="address" Path="Email" />
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Communication.Address" Qualifier="pref">
+                    <Record>
+                        <PropertyValue Property="type" EnumMember="Communication.ContactInformationType/preferred" />
+                        <PropertyValue Property="locality" Path="City" />
+                        <PropertyValue Property="street" Path="Street" />
+                        <PropertyValue Property="country" Path="Country" />
+                        <PropertyValue Property="code" Path="PostCode" />
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_ux_ui_customer.UX_CustomerType/Email" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Communication.IsEmailAddress" />
+            </Annotations>
+            <Annotations Target="cds_ux_ui_customer.UX_CustomerType/Telephone" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Communication.IsPhoneNumber" />
+            </Annotations>
+            <Annotations Target="cds_ux_ui_customer.cds_ux_ui_customer_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Org.OData.Capabilities.V1.BatchSupport">
+                    <Record Type="Org.OData.Capabilities.V1.BatchSupportType">
+                        <PropertyValue Property="ReferencesAcrossChangeSetsSupported" Bool="true" />
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__CodeList.CurrencyCodes">
+                    <Record>
+                        <PropertyValue Property="Url" String="./$metadata" />
+                        <PropertyValue Property="CollectionPath" String="SAP__Currencies" />
+                    </Record>
+                </Annotation>
+                <Annotation Term="SAP__CodeList.UnitsOfMeasure">
+                    <Record>
+                        <PropertyValue Property="Url" String="./$metadata" />
+                        <PropertyValue Property="CollectionPath" String="SAP__UnitsOfMeasure" />
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="cds_ux_ui_customer.SAP__Currency/CurrencyCode" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__common.Text" Path="Text" />
+                <Annotation Term="SAP__common.UnitSpecificScale" Path="DecimalPlaces" />
+                <Annotation Term="SAP__CodeList.StandardCode" Path="ISOCode" />
+            </Annotations>
+            <Annotations Target="cds_ux_ui_customer.SAP__UnitOfMeasure/UnitCode" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__common.Text" Path="Text" />
+                <Annotation Term="SAP__common.UnitSpecificScale" Path="DecimalPlaces" />
+                <Annotation Term="SAP__CodeList.StandardCode" Path="ISOCode" />
+                <Annotation Term="SAP__CodeList.ExternalCode" Path="ExternalCode" />
+            </Annotations>
+            <Annotations Target="cds_ux_ui_customer.SAP__UnitOfMeasure" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="SAP__core.AlternateKeys">
+                    <Collection>
+                        <Record>
+                            <PropertyValue Property="Key">
+                                <Collection>
+                                    <Record>
+                                        <PropertyValue Property="Name" Path="ExternalCode" />
+                                        <PropertyValue Property="Alias" String="ExternalCode" />
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="http://s4dhost.wdf.sap.corp:8011/sap/opu/odata/sap/UX_UI_CUSTOMER_O2/$metadata" xmlns:atom="http://www.w3.org/2005/Atom" />
+            <atom:link rel="latest-version" href="http://s4dhost.wdf.sap.corp:8011/sap/opu/odata/sap/UX_UI_CUSTOMER_O2/$metadata" xmlns:atom="http://www.w3.org/2005/Atom" />
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

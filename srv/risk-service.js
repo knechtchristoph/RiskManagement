@@ -7,7 +7,7 @@ const { query } = require("express");
    */
 module.exports = cds.service.impl(async function () {
    // Define constants for the Risk and BusinessPartners entities from the risk-service.cds file
-   const { Risks, BusinessPartners } = this.entities;
+   const { Risks, BusinessPartners, Customers } = this.entities;
 
    /**
    * Set criticality after a READ operation on /risks
@@ -36,9 +36,9 @@ module.exports = cds.service.impl(async function () {
       // The API Sandbox returns alot of business partners with empty names.
       // We don't want them in our application
       req.query.where("LastName <> '' and FirstName <> '' ");
-      
+
       req.query.SELECT.count = false;
-     
+
       return await BPsrv.transaction(req).send({
          query: req.query,
          headers: {
@@ -98,6 +98,22 @@ module.exports = cds.service.impl(async function () {
             })
          );
       } catch (error) { }
+   });
+
+
+
+   // connect to remote service
+   const CustomerSrv = await cds.connect.to("cds_ux_ui_customer");
+
+   /**
+    * Event-handler for read-events on the Customers entity.
+    */
+   this.on("READ", Customers, async (req) => {
+
+      return await CustomerSrv.transaction(req).send({
+         query: req.query
+      });
+
    });
 
 
