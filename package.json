@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@sap/ux-specification": "^1.102.15",
-    "sqlite3": "^5.0.4"
+    "sqlite3": "^5.1.5"
   },
   "scripts": {
     "start": "cds run",
